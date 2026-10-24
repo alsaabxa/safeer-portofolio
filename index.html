@@ -124,7 +124,7 @@ const DEF=()=>({f:{schoolType:"girls",year:"١٤٤٨هـ",hdr:"الإدارة ا
 let S=DEF(),T;
 if(top===window&&$("rl"))$("rl").replaceWith("تبويب التقارير");
 function renderProfileFields(){$("pf").innerHTML=`<div><label for="f_schoolType">نوع المدرسة</label><select id="f_schoolType"><option value="girls">مدرسة بنات</option><option value="boys">مدرسة بنين</option></select></div>`+F().map(([k,l])=>`<div><label for="f_${k}">${l}</label><input id="f_${k}" data-f="${k}" placeholder="اختياري"></div>`).join("")}
-const fill=()=>{document.querySelectorAll("[data-f]").forEach(e=>e.value=S.f[e.dataset.f]||"");$("f_schoolType").value=S.f.schoolType||"girls";$("qOn").checked=!!S.f.qr};
+const fill=()=>{renderProfileFields();document.querySelectorAll("[data-f]").forEach(e=>e.value=S.f[e.dataset.f]||"");$("f_schoolType").value=S.f.schoolType||"girls";$("qOn").checked=!!S.f.qr};
 renderProfileFields();
 $("pf").addEventListener("change",e=>{if(e.target.id!=="f_schoolType")return;S.f.schoolType=e.target.value;renderProfileFields();fill();pages();saveDB()});
 /* رابط الموقع المنشور (GitHub Pages) أو رابط الملف المخصص */
@@ -140,7 +140,6 @@ function pages(){
  const f=S.f,g=gender(),hl=f.hdr.split("\n").map(x=>x.trim()).filter(Boolean),nm=f.amb?" — "+esc(f.amb):"";
  document.title=`ملف إنجاز ${g.amb} الثقافة المؤسسية`;$("main-title").textContent=document.title;
  const link=shareURL(),qrOn=!!f.qr&&!!link,
- link=shareURL(),qrOn=!!f.qr&&!!link,
  sb=`<div class="sb"><img class="ministry-logo" src="${LOGO}" alt="شعار وزارة التعليم"><div>${hl.map(esc).join("<br>")}</div></div>`,out=[];let n=1;
  const pg=(t,b,x="")=>{n++;out.push(`<section class="pg">${sb}<div class="ct"><div class="pt">${t}</div>${x}${b}</div><div class="fo"><span>ملف إنجاز ${g.amb} الثقافة المؤسسية${nm}</span><span>${n}</span></div></section>`)};
  const qr=(u,w,l)=>u?`<div class="qr" data-t="${esc(u)}" data-w="${w}"></div>${l?`<div style="margin-top:6px;line-height:1.5;font-size:14px;color:var(--ink)">${l}</div>`:""}`:"";
