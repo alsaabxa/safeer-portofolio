@@ -52,6 +52,7 @@ small,.hint{color:#6b8593;font-size:13px;display:block;margin-top:6px}
 /* ---------- الغلاف (الصفحة الأولى من السجل) ---------- */
 .cv{background:#f1f1f1}
 .cvbg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cv .gender-title{position:absolute;left:330px;top:186px;width:460px;height:62px;z-index:2;display:flex;align-items:center;justify-content:center;padding:4px 12px;border-radius:10px;background:rgba(255,255,255,.97);color:#0B5E5D;font-size:26px;font-weight:700;line-height:1.35;text-align:center;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .cv .hd{position:absolute;left:928px;top:208px;width:190px;height:126px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;font-weight:700;line-height:1.75;overflow:hidden}
 .cv .hd div{width:100%}
 .cv .fld{position:absolute;left:400px;height:31px;display:flex;align-items:flex-end;padding:0 6px 3px;border-bottom:2px dotted #5b8b8a;color:#0B5E5D;font-weight:700;font-size:19px;line-height:24px;white-space:nowrap;overflow:hidden}
@@ -144,7 +145,7 @@ function pages(){
  const pg=(t,b,x="")=>{n++;out.push(`<section class="pg">${sb}<div class="ct"><div class="pt">${t}</div>${x}${b}</div><div class="fo"><span>ملف إنجاز ${g.ambTitle} الثقافة المؤسسية${nm}</span><span>${n}</span></div></section>`)};
  const qr=(u,w,l)=>u?`<div class="qr" data-t="${esc(u)}" data-w="${w}"></div>${l?`<div style="margin-top:6px;line-height:1.5;font-size:14px;color:var(--ink)">${l}</div>`:""}`:"";
  /* الغلاف: الصفحة الأولى من السجل، والاسم والمدرسة من الخانات */
- out.push(`<section class="pg cv"><img class="cvbg" src="${COVER}" alt=""><div class="hd"><div>${hl.map(esc).join("<br>")}</div></div><div class="sg">قيم نعيشها<br>وتجسد هويتنا</div><div class="ft">فريق الثقافة المؤسسية</div><div class="fld" style="top:372px;width:250px">${esc(f.amb)}</div><div class="fld" style="top:406px;width:286px">${esc(f.school)}</div>${qrOn?`<div class="cq">${qr(link,84,"")}<div>امسح الباركود<br>للاطلاع على الملف</div></div>`:""}</section>`);
+ out.push(`<section class="pg cv"><img class="cvbg" src="${COVER}" alt=""><div class="gender-title">سجل ${g.ambTitle} الثقافة المؤسسية</div><div class="hd"><div>${hl.map(esc).join("<br>")}</div></div><div class="sg">قيم نعيشها<br>وتجسد هويتنا</div><div class="ft">فريق الثقافة المؤسسية</div><div class="fld" style="top:372px;width:250px">${esc(f.amb)}</div><div class="fld" style="top:406px;width:286px">${esc(f.school)}</div>${qrOn?`<div class="cq">${qr(link,84,"")}<div>امسح الباركود<br>للاطلاع على الملف</div></div>`:""}</section>`);
  const row=(l,v)=>`<div class="rw"><b>${l}</b><span>${esc(v)||"................................"}</span></div>`;
  pg("البيانات الشخصية",`<div class="two"><div class="bx"><h3>بيانات ${g.ambTitle} الثقافة المؤسسية</h3>${row("الاسم",f.amb)}${row("الجوال",f.ambTel)}${row("البريد الإلكتروني",f.ambMail)}</div><div class="bx"><h3>بيانات ${g.principalTitle} المدرسة</h3>${row("الاسم",f.prin)}${row("الجوال",f.prinTel)}${row("بريد المدرسة الرسمي",f.prinMail)}</div></div><div class="bx" style="margin-top:18px">${row("اسم المدرسة",f.school)}${row("العام الدراسي",f.year)}</div>`);
  pg("فهرس الإنجازات",`<div class="ix">${SEC.map(([k,nn])=>`<div><span>${nn}</span><b>${S.sec[k].items.length}</b></div>`).join("")}</div>`);
